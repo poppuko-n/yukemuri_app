@@ -10,6 +10,7 @@ gem "cssbundling-rails"
 gem "bootsnap", require: false
 gem "thruster", require: false
 gem "pg"
+gem "devise"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
