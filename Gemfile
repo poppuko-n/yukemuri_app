@@ -11,6 +11,7 @@ gem "bootsnap", require: false
 gem "thruster", require: false
 gem "pg"
 gem "devise"
+gem "haml-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -19,4 +20,5 @@ end
 
 group :development do
   gem "web-console"
+  gem "html2haml"
 end
