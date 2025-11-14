@@ -240,6 +240,9 @@ GEM
       sexp_processor (~> 4.16)
     securerandom (0.4.1)
     sexp_processor (4.17.4)
+    simple_form (5.4.0)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     stringio (3.1.8)
     temple (0.10.4)
     thor (1.4.0)
@@ -296,6 +299,7 @@ DEPENDENCIES
   propshaft
   puma
   rails (~> 8.0.4)
+  simple_form
   thruster
   turbo-rails
   web-console
