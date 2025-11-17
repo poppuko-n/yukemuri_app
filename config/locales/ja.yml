@@ -1,11 +1,25 @@
 ---
 ja:
+  enumerize:
+    accommodation:
+      category:
+        guest_house: "民宿"
+        inn: "旅館"
+        hotel: "ホテル"
   controller:
     created: 登録しました。
     updated: 更新しました。
     destroyed: 削除しました。
   activerecord:
     attributes:
+      accommodation:
+        name: "施設名"
+        prefecture: "都道府県"
+        address: "住所"
+        phone_number: "電話番号"
+        category: "宿タイプ"
+        description: "施設説明"
+        published: "公開"
       user:
         current_password: "現在のパスワード"
         email: "メールアドレス"

@@ -1,14 +1,14 @@
 .container.mt-4
   .d-flex.justify-content-between.align-items-center
     .fs-2 宿泊施設一覧
-    = link_to '宿舎登録', new_admins_accommodation_path, class: 'btn btn-outline-danger'
+    = link_to '宿泊施設登録', new_admins_accommodation_path, class: 'btn btn-outline-danger'
 
   .row.g-4
-    - (@accommodations || []).each do |accommodation|
+    - @accommodations.each do |accommodation|
       .col-12.col-sm-6.col-md-4.col-lg-3
-        .card.h-100
+        .card.h-100z
           .card-body
-            .fs-5= accommodation.name
-            .justify-content-sm-between
-              .fs-4= accommodation.category
-              .fs-4= accommodation.prefecture_name
+            .fs-4= accommodation.name
+            .d-flex.justify-content-between.align-items-center
+              .fs-5= accommodation.category
+              .fs-5= accommodation.prefecture_name

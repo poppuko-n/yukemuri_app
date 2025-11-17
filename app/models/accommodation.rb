@@ -15,4 +15,8 @@ class Accommodation < ApplicationRecord
   validates :name, uniqueness: { scope: :address }
 
   scope :published, -> { where(published: true) }
+
+  def prefecture_name
+    Prefecture::LIST.key(prefecture)
+  end
 end
