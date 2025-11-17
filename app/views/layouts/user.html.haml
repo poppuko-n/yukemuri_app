@@ -22,13 +22,7 @@
           %span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse
           %ul.navbar-nav.me-auto.mb-2.mb-lg-0
-            - if user_signed_in?
-              %li.nav-item
-                = button_to 'ログアウト', new_user_registration_path, method: delete, class: 'nav-link'
-            - else
-              %li.nav-item
-                = link_to '新規登録', new_user_registration_path, class: 'nav-link'
-              %li.nav-item
-                = link_to 'ログイン', new_user_session_path, class: 'nav-link'
+            %li.nav-item
+              = button_to 'ログアウト', destroy_user_registration_path, method: delete, class: 'nav-link'
     = render 'layouts/flash'
     = yield

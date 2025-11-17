@@ -24,7 +24,7 @@
           %ul.navbar-nav.me-auto.mb-2.mb-lg-0
             - if admin_signed_in?
               %li.nav-item
-                = button_to 'ログアウト', delete_admin_session_path, method: :delete, class: 'nav-link'
+                = button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link'
             - else
               %li.nav-item
                 = link_to 'ログイン',  new_admin_session_path, class: 'nav-link'
