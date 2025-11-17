@@ -6,13 +6,13 @@ class Accommodation < ApplicationRecord
   enumerize :category, in: ACCOMMODATION_CATEGORY
   enumerize :prefecture, in: Prefecture::LIST
 
-  validate :prefecture, presence: true
-  validate :name, presence: true
-  validate :address, presence: true
-  validate :phone_number, presence: true, format: { with: /\A0\d{1,4}-?\d{1,4}-?\d{4}\z/  }
-  validate :category, presence: true
-  validate :description, presence: true
-  validate :name, uniqueness: { scope: :address }
+  validates :prefecture, presence: true
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :phone_number, presence: true, format: { with: /\A0\d{1,4}-?\d{1,4}-?\d{4}\z/  }
+  validates :category, presence: true
+  validates :description, presence: true
+  validates :name, uniqueness: { scope: :address }
 
   scope :published, -> { where(published: true) }
 end
