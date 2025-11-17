@@ -98,6 +98,8 @@ GEM
       responders
       warden (~> 1.2.3)
     drb (2.2.3)
+    enumerize (2.8.1)
+      activesupport (>= 3.2)
     erb (6.0.0)
     erubi (1.13.1)
     erubis (2.7.0)
@@ -292,6 +294,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  enumerize
   haml-rails
   html2haml
   jsbundling-rails

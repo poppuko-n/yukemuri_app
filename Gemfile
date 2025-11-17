@@ -13,6 +13,7 @@ gem "pg"
 gem "devise"
 gem "haml-rails"
 gem "simple_form"
+gem "enumerize"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
