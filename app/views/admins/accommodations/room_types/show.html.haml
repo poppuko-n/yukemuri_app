@@ -16,7 +16,7 @@
             %dd= @room_type.description
           -# = published_badge(@accommodation)
 
-      = link_to '編集', admins_root_path, class: 'btn btn-outline-success w-100 mt-2'
+      = link_to '編集', edit_admins_accommodation_room_type_path(@accommodation, @room_type), class: 'btn btn-outline-success w-100 mt-2'
       = button_to '削除', admins_accommodation_room_type_path(@accommodation, @room_type), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger w-100 mt-2'
 
     .d-flex.justify-content-between.align-items-center.mt-4

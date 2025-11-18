@@ -1,5 +1,5 @@
 class Admins::Accommodations::RoomTypesController < Admins::Accommodations::ApplicationController
-  before_action :set_room_type, only: %i[show destroy]
+  before_action :set_room_type, only: %i[show edit update destroy]
   def new
     @room_type = @accommodation.room_types.build
   end
@@ -14,6 +14,16 @@ class Admins::Accommodations::RoomTypesController < Admins::Accommodations::Appl
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    if @room_type.update(room_type_params)
+      redirect_to admins_accommodation_room_type_path(@accommodation, @room_type), notice: t('controller.updated')
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
 
   def destroy
     @room_type.destroy!

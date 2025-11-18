@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'accommodations#index'
     resources :accommodations, only: %i[index show new create edit update destroy] do
-      resources :room_types, only: %i[show new create destroy], module: :accommodations
+      resources :room_types, only: %i[show new create edit update destroy], module: :accommodations
     end
   end
   get "up" => "rails/health#show", as: :rails_health_check
