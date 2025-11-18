@@ -13,13 +13,21 @@ ja:
   activerecord:
     attributes:
       accommodation:
-        name: "施設名"
+        name: "宿名"
         prefecture: "都道府県"
         address: "住所"
         phone_number: "電話番号"
         category: "宿タイプ"
-        description: "施設説明"
+        description: "説明文"
         published: "公開"
+        image: "画像"
+      room_type:
+        name: "部屋名"
+        capacity: "定員"
+        base_price: "基本料金（税抜き）"
+        description: "備考（設備など）"
+        position: "表示順"
+        image: "画像"
       user:
         current_password: "現在のパスワード"
         email: "メールアドレス"
