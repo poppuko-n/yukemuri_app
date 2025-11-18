@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_18_133955) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_18_221741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -68,6 +68,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_18_133955) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "room_inventories", force: :cascade do |t|
+    t.bigint "room_type_id", null: false
+    t.date "date", null: false
+    t.integer "remaining_room", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_type_id", "date"], name: "index_room_inventories_on_room_type_id_and_date", unique: true
+    t.index ["room_type_id"], name: "index_room_inventories_on_room_type_id"
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.bigint "accommodation_id", null: false
     t.string "name", null: false
@@ -96,5 +106,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_18_133955) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "room_inventories", "room_types"
   add_foreign_key "room_types", "accommodations"
 end
