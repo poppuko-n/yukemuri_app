@@ -19,6 +19,6 @@ class Admins::AccommodationsController < Admins::ApplicationController
   private
 
   def accommodation_params
-    params.require(:accommodation).permit(:name, :prefecture, :address, :phone_number, :category, :description, :published)
+    params.require(:accommodation).permit(:name, :prefecture, :address, :phone_number, :category, :image, :description, :published)
   end
 end
