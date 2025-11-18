@@ -1,5 +1,5 @@
 class Admins::Accommodations::RoomTypesController < Admins::Accommodations::ApplicationController
-  before_action :set_room_type, only: %i[show]
+  before_action :set_room_type, only: %i[show destroy]
   def new
     @room_type = @accommodation.room_types.build
   end
@@ -14,6 +14,11 @@ class Admins::Accommodations::RoomTypesController < Admins::Accommodations::Appl
   end
 
   def show; end
+
+  def destroy
+    @room_type.destroy!
+    redirect_to admins_root_path, notice: t('controller.destroyed')
+  end
 
   private
 
