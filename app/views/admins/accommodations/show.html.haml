@@ -25,4 +25,9 @@
           %p.fs-4
             説明：
             = @accommodation.description
+          %p.fs-4
+            公開：
+            = @accommodation.published
+      = link_to '編集', edit_admins_accommodation_path(@accommodation), class: 'btn btn-primary w-100 mt-2'
+      = button_to '削除', admins_accommodation_path(@accommodation), class: 'btn btn-danger w-100 mt-2'
 
