@@ -28,6 +28,9 @@ ja:
         description: "備考（設備など）"
         position: "表示順"
         image: "画像"
+      room_inventory:
+        date: "日付"
+        remaining_room: "在庫数"
       user:
         current_password: "現在のパスワード"
         email: "メールアドレス"
