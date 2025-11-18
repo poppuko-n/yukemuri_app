@@ -13,7 +13,7 @@ class Admins::AccommodationsController < Admins::ApplicationController
   def create
     @accommodation = Accommodation.new(accommodation_params)
     if @accommodation.save
-      redirect_to :show, notice: t('controller.created')
+      redirect_to admins_accommodation_path(@accommodation), notice: t('controller.created')
     else
       render :new, status: :unprocessable_content
     end
@@ -23,7 +23,7 @@ class Admins::AccommodationsController < Admins::ApplicationController
 
   def update
     if @accommodation.update(accommodation_params)
-      redirect_to :show, notice: t('controller.updated')
+      redirect_to admins_accommodation_path(@accommodation), notice: t('controller.updated')
     else
       render :edit, status: :unprocessable_content
     end
