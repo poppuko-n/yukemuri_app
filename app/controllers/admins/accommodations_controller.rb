@@ -2,7 +2,7 @@ class Admins::AccommodationsController < Admins::ApplicationController
   before_action :set_accommodation, only: %w[show edit update destroy]
   def index
     @form = AccommodationSearchForm.new(accommodation_search_form_params)
-    @accommodations = @form.accommodations.published
+    @accommodations = @form.accommodations
   end
 
   def show; end

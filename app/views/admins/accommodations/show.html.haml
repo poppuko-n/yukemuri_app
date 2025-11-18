@@ -10,7 +10,7 @@
       .card
         .card-body
           %dl
-            %dt 名称
+            %dt 宿名
             %dd= @accommodation.name
             %dt 都道府県
             %dd= @accommodation.prefecture_name
@@ -20,7 +20,7 @@
             %dd= @accommodation.address
             %dt 電話番号
             %dd= @accommodation.phone_number
-            %dt 説明
+            %dt 説明文
             %dd= @accommodation.description
           = published_badge(@accommodation)
 
