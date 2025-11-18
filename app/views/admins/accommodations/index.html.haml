@@ -3,6 +3,18 @@
     .fs-2 宿泊施設一覧
     = link_to '宿泊施設登録', new_admins_accommodation_path, class: 'btn btn-outline-danger'
 
+  .card.mt-2
+    .card-body
+      = simple_form_for(@form, url: admins_accommodations_path, method: :get) do |f|
+        .row.align-items-center
+          .col-3
+            = f.input :category, collection: Accommodation.category.options
+          .col-3
+            = f.input :prefecture, collection: Prefecture::LIST
+          .row
+            .col-3
+              = f.submit '検索', class: 'btn btn-primary'
+
   .row.g-4.mt-2
     - @accommodations.each do |accommodation|
       .col-12.col-sm-6.col-md-4.col-lg-3

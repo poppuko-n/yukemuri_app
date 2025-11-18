@@ -1,4 +1,4 @@
-module Admins::AccommodationsHelper
+module AccommodationHelper
   def published_badge(accommodation)
     if accommodation.published?
       content_tag(:span, '公開', class: 'badge bg-success')
