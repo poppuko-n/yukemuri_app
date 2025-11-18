@@ -1,0 +1,28 @@
+.container.mt-4
+  .fs-2 宿泊施設詳細
+  .row.justify-content-center
+    .col-md-6
+      .ratio.ratio-4x3
+        = image_tag @accommodation.image
+    .col-md-6
+      .card
+        .card-body
+          %p.fs-3
+            名称：
+            = @accommodation.name
+          %p.fs-4
+            都道府県：
+            = @accommodation.prefecture_name
+          %p.fs-4
+            カテゴリ：
+            = @accommodation.category
+          %p.fs-4
+            住所：
+            = @accommodation.address
+          %p.fs-4
+            電話番号：
+            = @accommodation.phone_number
+          %p.fs-4
+            説明：
+            = @accommodation.description
+

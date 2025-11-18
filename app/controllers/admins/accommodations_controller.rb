@@ -3,6 +3,10 @@ class Admins::AccommodationsController < Admins::ApplicationController
     @accommodations = Accommodation.all
   end
 
+  def show
+    @accommodation = Accommodation.find(params[:id])
+  end
+
   def new
     @accommodation = Accommodation.new
   end

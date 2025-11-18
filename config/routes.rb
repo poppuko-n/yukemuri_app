@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root 'accommodations#index'
-    resources :accommodations, only: %i[index new create]
+    resources :accommodations, only: %i[index show new create edit update destroy]
   end
   get "up" => "rails/health#show", as: :rails_health_check
 
