@@ -9,7 +9,7 @@ class Admins::ReservationsController < Admins::ApplicationController
   def edit; end
 
   def update
-    if @reservation.update(reservation_params)
+    if @reservation.update_with_room_inventory(reservation_params)
       redirect_to admins_reservations_path, notice: t('controller.updated')
     else
       render :edit, status: :unprocessable_content

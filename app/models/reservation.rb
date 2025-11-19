@@ -38,6 +38,17 @@ class Reservation < ApplicationRecord
     self.total_amount = Tax.calculate_with_tax(subtotal).to_i
   end
 
+  def update_with_room_inventory(params)
+    previous_status = status
+
+    if update(params)
+      handle_status_transition(previous_status, params)
+      true
+    else
+      false
+    end
+  end
+
   def cancellable?
     confirmed? && check_in_date > Date.current + 1.day
   end
@@ -52,6 +63,16 @@ class Reservation < ApplicationRecord
   end
 
   private
+
+  def handle_status_transition(previous_status, currnt_status)
+    if previous_status != 'canceled' && currnt_status == 'canceled'
+      release_room!
+    end
+
+    if previous_status == 'cancelled' && currnt_status == 'confirmed'
+      use_room!
+    end
+  end
 
   def base_price_decimal
     BigDecimal(room_type.base_price.to_s)
