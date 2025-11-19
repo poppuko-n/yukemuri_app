@@ -9,6 +9,7 @@ ja:
     reservation:
       status:
         confirmed: "予約確定"
+        checked_out: "チェックアウト済み"
         cancelled: "キャンセル"
   controller:
     created: 登録しました。

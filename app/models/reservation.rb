@@ -4,7 +4,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room_type
 
-  RESERVATION_STATUSES = %w[confirmed cancelled].freeze
+  RESERVATION_STATUSES = %w[confirmed checked_out cancelled].freeze
   MIN_NIGHTS = 1
   MAX_NIGHTS = 5
   NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
