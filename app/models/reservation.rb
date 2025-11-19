@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
 
   belongs_to :user
   belongs_to :room_type
+  has_many :reviews, dependent: :destroy
 
   RESERVATION_STATUSES = %w[confirmed checked_out cancelled].freeze
   MIN_NIGHTS = 1
