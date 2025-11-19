@@ -14,21 +14,4 @@
             %dd= number_to_currency(@room_type.base_price)
             %dt= RoomType.human_attribute_name(:description)
             %dd= @room_type.description
-
-    .fs-2.mt-4 部屋在庫一覧
-
-    - if @room_type.room_inventories.any?
-      %table.table.table-striped.table-hover.align-middle
-        %thread
-          %tr
-            %th= RoomInventory.human_attribute_name(:date)
-            %th= RoomInventory.human_attribute_name(:remaining_room)
-            %th
-        %tbody
-          - @room_type.room_inventories.default_order.each do |room_inventory|
-            %tr
-              %td= l(room_inventory.date)
-              %td #{room_inventory.remaining_room}室
-              %td
-    - else
-      %p.text-muted.mt-2 部屋在庫がありません
+  = link_to '宿泊予約', '#', class: 'btn btn-outline-success w-100 mt-4'
