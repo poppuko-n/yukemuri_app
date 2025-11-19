@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     root 'accommodations#index'
-    resources :accommodations, only: %i[index]
+    resources :accommodations, only: %i[index show]
   end
 
   namespace :admins do

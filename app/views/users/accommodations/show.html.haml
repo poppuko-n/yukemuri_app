@@ -1,0 +1,43 @@
+.container.mt-4
+  .fs-2 宿泊施設詳細
+
+  .row.justify-content-center.mt-4
+    .col-md-6
+      .ratio.ratio-4x3
+        = image_tag @accommodation.image
+
+    .col-md-6
+      .card
+        .card-body
+          %dl
+            %dt= Accommodation.human_attribute_name(:name)
+            %dd= @accommodation.name
+            %dt= Accommodation.human_attribute_name(:prefecture)
+            %dd= @accommodation.prefecture_name
+            %dt= Accommodation.human_attribute_name(:category)
+            %dd= @accommodation.category_text
+            %dt= Accommodation.human_attribute_name(:address)
+            %dd= @accommodation.address
+            %dt= Accommodation.human_attribute_name(:phone_number)
+            %dd= @accommodation.phone_number
+            %dt= Accommodation.human_attribute_name(:description)
+            %dd= @accommodation.description
+          = published_badge(@accommodation)
+
+    .fs-2 部屋タイプ一覧
+
+    - if @accommodation.room_types.any?
+      %table.table.table-stripedi.mt-4.table-hover
+        %thead
+          %tr
+            %th= RoomType.human_attribute_name(:name)
+            %th= RoomType.human_attribute_name(:capacity)
+            %th= RoomType.human_attribute_name(:base_price)
+        %tbody
+          - @accommodation.room_types.each do |room_type|
+            %tr
+              %td= link_to room_type.name, '#'
+              %td #{room_type.capacity}名
+              %td= number_to_currency(room_type.base_price)
+    - else
+      %p.text-muted.mt-2 部屋タイプが登録されていません
