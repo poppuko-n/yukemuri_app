@@ -1,4 +1,4 @@
-= simple_form_for [:admins, accommodation, room_type] do |f|
+= simple_form_for [:admins, accommodation, room_type], html: { multipart: true, data: { turbo: false } } do |f|
   = f.input :name, required: true
   = f.input :capacity, required: true
   = f.input :base_price, required: true
