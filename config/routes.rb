@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { registrations: "admins/registrations", sessions: "admins/sessions" }
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 
+  root 'accommodations#index'
+
+  resources :accommodations, only: %i[index]
+
+  namespace :users do
+    root 'accommodations#index'
+    resources :accommodations, only: %i[index]
+  end
+
   namespace :admins do
     root 'accommodations#index'
     resources :accommodations, only: %i[index show new create edit update destroy] do

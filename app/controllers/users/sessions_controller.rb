@@ -3,8 +3,6 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
 
-  layout 'user'
-
   # GET /resource/sign_in
   # def new
   #   super
@@ -32,6 +30,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    new_users_session_path
+    root_path
   end
 end
