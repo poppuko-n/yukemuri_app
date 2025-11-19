@@ -5,6 +5,8 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   end
 
   def confirm
+    @reservation.calculate_total_amount
+
     if @reservation.valid?
       render :confirm
     else

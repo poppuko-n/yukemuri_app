@@ -25,7 +25,27 @@ class Reservation < ApplicationRecord
   validate :validate_room_inventory
   validate :validate_total_guest_count
 
+  def calculate_total_amount
+    return if night.blank? || adult_count.blank? || child_count.blank?
+
+    subtotal = adult_amount + child_amount
+    self.total_amount = Tax.calculate_with_tax(subtotal).to_i
+  end
+
   private
+
+  def base_price_decimal
+    BigDecimal(room_type.base_price.to_s)
+  end
+
+  def adult_amount
+    base_price_decimal * BigDecimal(night.to_s) * BigDecimal(adult_count.to_s)
+  end
+
+  def child_amount
+    child_unit = PricingRule.child_price(base_price_decimal)
+    child_unit * BigDecimal(night.to_s) * BigDecimal(child_count.to_s)
+  end
 
   def validate_check_in_date_range
     range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS)
