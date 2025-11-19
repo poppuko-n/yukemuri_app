@@ -1,15 +1,24 @@
 class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommodations::RoomTypes::ApplicationController
-  before_action :build_reservation, only: %i[confirm]
+  before_action :build_reservation, only: %i[confirm create]
   def new
     @reservation = current_user.reservations.build
   end
 
   def confirm
     return redirect_to new_users_accommodation_room_type_reservation_path(@accommodation, @room_type) if request.get?
-    @reservation.calculate_total_amount
 
+    @reservation.calculate_total_amount
     if @reservation.valid?
       render :confirm
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+  def create
+    @reservation.calculate_total_amount
+    if @reservation.save
+      redirect_to users_root_path, notice: t('controller.created')
     else
       render :new, status: :unprocessable_content
     end

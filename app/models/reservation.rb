@@ -27,6 +27,8 @@ class Reservation < ApplicationRecord
 
   attribute :status, default: 'confirmed'
 
+  after_create :use_room!
+
   def calculate_total_amount
     return if night.blank? || adult_count.blank? || child_count.blank?
 
@@ -80,5 +82,11 @@ class Reservation < ApplicationRecord
 
   def stay_date_range
     (check_in_date...(check_in_date + night.days)).to_a
+  end
+
+  def use_room!
+    stay_date_range.each do |date|
+      room_type.room_inventories.lock.find_by!(date: date).use_room!
+    end
   end
 end
