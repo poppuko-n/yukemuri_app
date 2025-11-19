@@ -36,6 +36,19 @@ class Reservation < ApplicationRecord
     self.total_amount = Tax.calculate_with_tax(subtotal).to_i
   end
 
+  def cancellable?
+    confirmed? && check_in_date > Date.current + 1.day
+  end
+
+  def cancel!
+    raise unless cancellable?
+
+    transaction do
+      update!(status: 'cancelled')
+      release_room!
+    end
+  end
+
   private
 
   def base_price_decimal
@@ -87,6 +100,12 @@ class Reservation < ApplicationRecord
   def use_room!
     stay_date_range.each do |date|
       room_type.room_inventories.lock.find_by!(date: date).use_room!
+    end
+  end
+
+  def release_room!
+    stay_date_range.each do |date|
+      room_type.room_inventories.lock.find_by!(date: date).release_room!
     end
   end
 end

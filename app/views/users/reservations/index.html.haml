@@ -15,7 +15,7 @@
         %th
 
     %tbody
-      - @reservations.includes(room_type: :accommodation).each do |reservation|
+      - @reservations.each do |reservation|
         %tr
           %td= reservation.check_in_date
           %td= reservation.night
