@@ -22,6 +22,8 @@ class Reservation < ApplicationRecord
   validates :status, presence: true
 
   validate :validate_check_in_date_range
+  validate :validate_room_inventory
+  validate :validate_total_guest_count
 
   private
 
@@ -29,5 +31,32 @@ class Reservation < ApplicationRecord
     range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS)
 
     errors.add(:check_in_date, :validate_check_in_date_range) unless range.include?(check_in_date)
+  end
+
+  def validate_room_inventory
+    return if check_in_date.blank? || night.blank?
+
+    inventories_by_date = room_type.room_inventories.where(date: stay_date_range).index_by(&:date)
+
+    unavailable = stay_date_range.any? do |date|
+      inventory = inventories_by_date[date]
+      inventory.nil? || inventory.remaining_room <= 0
+    end
+
+    errors.add(:night, :validate_room_inventory) if unavailable
+  end
+
+  def validate_total_guest_count
+    return if adult_count.blank? || child_count.blank?
+
+    total_guests = adult_count + child_count
+    if total_guests > room_type.capacity
+      errors.add(:adult_count, :validate_total_guest_count)
+      errors.add(:child_count, :validate_total_guest_count)
+    end
+  end
+
+  def stay_date_range
+    (check_in_date...(check_in_date + night.days)).to_a
   end
 end
