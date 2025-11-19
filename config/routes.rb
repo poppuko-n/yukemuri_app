@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     root 'accommodations#index'
     resources :accommodations, only: %i[index show new create edit update destroy] do
       resources :room_types, only: %i[show new create edit update destroy], module: :accommodations do
-        resources :room_inventories, only: %i[new create], module: :room_types
+        resources :room_inventories, only: %i[new create edit update], module: :room_types
       end
     end
   end
