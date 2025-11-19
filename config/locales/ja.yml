@@ -41,6 +41,8 @@ ja:
         sign_in_count: "ログイン回数"
         current_sign_in_at: "最終ログイン日時"
         confirmed_at: "確認日時"
+        last_sign_in_at: "前回ログイン日時"
+        created_at: "作成日時"
       admin:
         current_password: "現在のパスワード"
         email: "メールアドレス"
