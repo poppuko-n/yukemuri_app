@@ -28,6 +28,8 @@
               %li.nav-item
                 = link_to 'ユーザー', admins_users_path, class: 'nav-link'
               %li.nav-item
+                = link_to '予約情報', admins_reservations_path, class: 'nav-link'
+              %li.nav-item
                 = button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link'
             - else
               %li.nav-item

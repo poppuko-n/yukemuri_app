@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: %i[index show destroy]
+    resources :reservations, only: %i[index]
   end
   get "up" => "rails/health#show", as: :rails_health_check
 end
