@@ -31,6 +31,12 @@ ja:
       room_inventory:
         date: "日付"
         remaining_room: "在庫数"
+      reservation:
+        check_in_date: "宿泊日"
+        night: "泊数"
+        adult_count: "大人人数"
+        child_count: "子供人数"
+        total_amount: "合計金額"
       user:
         current_password: "現在のパスワード"
         email: "メールアドレス"

@@ -1,5 +1,36 @@
 .container.mt-4
   .fs-2 宿予約
 
+  .row.mt-4
+    .col-md-12
+      .card
+        .card-body
+          %dl
+            %dt= RoomType.human_attribute_name(:name)
+            %dd= @room_type.name
+            %dt= RoomType.human_attribute_name(:capacity)
+            %dd= @room_type.capacity
+            %dt= RoomType.human_attribute_name(:base_price)
+            %dd= number_to_currency(@room_type.base_price)
+            %dt= RoomType.human_attribute_name(:description)
+            %dd= @room_type.description
+
+    = simple_form_for(@reservation, url: users_accommodation_room_type_reservations_path(@accommodation, @room_type)) do |f|
+      = f.input :check_in_date, as: :date, html5: true
+      = f.input :night, collection: Reservation::NIGHT_RANGE
+      = f.input :adult_count
+      = f.input :child_count
+      = f.button :submit, '予約確認へ', class: 'btn-outline-success w-100'
+
+  .row.mt-3
+    .col-md-12
+      %ul.text-muted
+        %li 在庫がある場合のみ予約できます。
+        %li 1泊あたりの料金は部屋タイプで設定された基本料金です。
+        %li 子ども料金は大人料金の70%（小数点以下切り捨て）です。
+        %li 合計金額は「1泊あたりの料金 × 泊数 × 人数」に消費税10%を加算し、1円未満は切り捨てます。
+        %li 宿泊日は明日から90日先まで選択できます。
+        %li 泊数は1〜5泊の範囲で指定できます。
+        %li 部屋の定員を超える人数では予約できません。
 
 
