@@ -1,6 +1,7 @@
 class RoomType < ApplicationRecord
   belongs_to :accommodation
   has_many :room_inventories, dependent: :destroy
+  has_many :reservations, dependent: :restrict_with_exception
   has_one_attached :image
 
   validates :name, presence: true, uniqueness: { scope: :accommodation_id }
