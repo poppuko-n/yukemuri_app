@@ -8,6 +8,9 @@ class Reservation < ApplicationRecord
   MIN_NIGHTS = 1
   MAX_NIGHTS = 5
   NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
+  MIN_CHECK_IN_DAYS = 1
+  MAX_CHECK_IN_DAYS = 90
+  NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
 
   enumerize :status, in: RESERVATION_STATUSES, predicates: true
 
