@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         resources :room_inventories, only: %i[new create edit update], module: :room_types
       end
     end
+    resources :users, only: %i[index]
   end
   get "up" => "rails/health#show", as: :rails_health_check
 end
