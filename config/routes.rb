@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     root 'accommodations#index'
     resources :accommodations, only: %i[index show] do
       resources :room_types, only: %i[show], module: :accommodations do
-        resources :reservations, only: %i[new create], module: :room_types
+        resources :reservations, only: %i[new create], module: :room_types do
+          post :confirm, on: :collection
+        end
       end
     end
   end

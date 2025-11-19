@@ -20,4 +20,14 @@ class Reservation < ApplicationRecord
   validates :child_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :total_amount, numericality: { only_integer: true, greater_than: 0 }
   validates :status, presence: true
+
+  validate :validate_check_in_date_range
+
+  private
+
+  def validate_check_in_date_range
+    range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS)
+
+    errors.add(:check_in_date, :validate_check_in_date_range) unless range.include?(check_in_date)
+  end
 end
