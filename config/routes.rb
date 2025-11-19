@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :accommodations, only: %i[index show] do
       resources :room_types, only: %i[show], module: :accommodations do
         resources :reservations, only: %i[new create], module: :room_types do
-          post :confirm, on: :collection
+          collection do
+            match :confirm, via: %i[get post]
+          end
         end
       end
     end

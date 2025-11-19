@@ -5,6 +5,7 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   end
 
   def confirm
+    return redirect_to new_users_accommodation_room_type_reservation_path(@accommodation, @room_type) if request.get?
     @reservation.calculate_total_amount
 
     if @reservation.valid?
@@ -17,6 +18,8 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   private
 
   def build_reservation
+    return if request.get?
+
     @reservation = current_user.reservations.build(reservation_params)
     @reservation.room_type = @room_type
   end

@@ -25,6 +25,8 @@ class Reservation < ApplicationRecord
   validate :validate_room_inventory
   validate :validate_total_guest_count
 
+  attribute :status, default: 'confirmed'
+
   def calculate_total_amount
     return if night.blank? || adult_count.blank? || child_count.blank?
 
