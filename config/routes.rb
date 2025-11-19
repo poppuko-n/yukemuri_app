@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   namespace :users do
     root 'accommodations#index'
     resources :accommodations, only: %i[index show] do
-      resources :room_types, only: %i[show], module: :accommodations
+      resources :room_types, only: %i[show], module: :accommodations do
+        resources :reservations, only: %i[new create], module: :room_types
+      end
     end
   end
 

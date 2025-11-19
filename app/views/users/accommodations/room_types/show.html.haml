@@ -14,4 +14,4 @@
             %dd= number_to_currency(@room_type.base_price)
             %dt= RoomType.human_attribute_name(:description)
             %dd= @room_type.description
-  = link_to '宿泊予約', '#', class: 'btn btn-outline-success w-100 mt-4'
+  = link_to '宿泊予約', new_users_accommodation_room_type_reservation_path(@accommodation, @room_type, @reservation), class: 'btn btn-outline-success w-100 mt-4'
