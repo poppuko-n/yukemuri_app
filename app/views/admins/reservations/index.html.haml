@@ -27,4 +27,4 @@
           %td #{reservation.child_count}名
           %td= number_to_currency(reservation.total_amount)
           %td= reservation.status_text
-          %td= link_to "詳細", '#', class: "btn btn-sm btn-primary"
+          %td= link_to '詳細', admins_reservation_path(reservation), class: "btn btn-sm btn-primary"
