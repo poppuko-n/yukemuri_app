@@ -3,7 +3,7 @@
 
   .card.mt-2
     .card-body
-      = simple_form_for(@form, url: accommodations_path, method: :get) do |f|
+      = simple_form_for(@form, url: users_accommodations_path, method: :get) do |f|
         .row.align-items-center
           .col-3
             = f.input :category, collection: Accommodation.category.options
