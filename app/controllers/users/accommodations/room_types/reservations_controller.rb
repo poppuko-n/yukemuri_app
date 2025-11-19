@@ -18,7 +18,7 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   def create
     @reservation.calculate_total_amount
     if @reservation.save
-      redirect_to users_root_path, notice: t('controller.created')
+      redirect_to users_reservations_path, notice: t('controller.created')
     else
       render :new, status: :unprocessable_content
     end
