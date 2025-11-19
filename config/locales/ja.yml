@@ -38,6 +38,9 @@ ja:
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
         name: "名前"
+        sign_in_count: "ログイン回数"
+        current_sign_in_at: "最終ログイン日時"
+        confirmed_at: "確認日時"
       admin:
         current_password: "現在のパスワード"
         email: "メールアドレス"
