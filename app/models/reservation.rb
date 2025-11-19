@@ -29,7 +29,7 @@ class Reservation < ApplicationRecord
 
   after_create :use_room!
 
-  scope :default_order, -> { order(check_in_date: :desc) }
+  scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
 
   def calculate_total_amount
     return if night.blank? || adult_count.blank? || child_count.blank?
