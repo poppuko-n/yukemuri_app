@@ -1,0 +1,28 @@
+.container.mt-4
+  .fs-2 予約一覧
+
+  %table.table.table-striped.mt-4.table-hover
+    %thead
+      %tr
+        %th= Reservation.human_attribute_name(:check_in_date)
+        %th= Reservation.human_attribute_name(:night)
+        %th= Accommodation.human_attribute_name(:name)
+        %th= RoomType.human_attribute_name(:name)
+        %th= Reservation.human_attribute_name(:adult_count)
+        %th= Reservation.human_attribute_name(:child_count)
+        %th= Reservation.human_attribute_name(:total_amount)
+        %th= Reservation.human_attribute_name(:status)
+        %th
+
+    %tbody
+      - @reservations.includes(room_type: :accommodation).each do |reservation|
+        %tr
+          %td= reservation.check_in_date
+          %td= reservation.night
+          %td= reservation.room_type.accommodation.name
+          %td= reservation.room_type.name
+          %td #{reservation.adult_count}名
+          %td #{reservation.child_count}名
+          %td= number_to_currency(reservation.total_amount)
+          %td= reservation.status_text
+          %td= link_to "詳細", '#', class: "btn btn-sm btn-primary"

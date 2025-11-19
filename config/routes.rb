@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :reservations, only: %i[index]
   end
 
   namespace :admins do

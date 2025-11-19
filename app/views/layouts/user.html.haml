@@ -23,6 +23,10 @@
         #navbarSupportedContent.collapse.navbar-collapse
           %ul.navbar-nav.me-auto.mb-2.mb-lg-0
             %li.nav-item
+              = link_to '宿泊施設', users_accommodations_path, class: 'nav-link'
+            %li.nav-item
+              = link_to '予約状況', users_reservations_path, class: 'nav-link'
+            %li.nav-item
               = button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
     = render 'layouts/flash'
     = yield
