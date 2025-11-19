@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :reservations, only: %i[index show update]
+    resources :reservations, only: %i[index show update] do
+      resources :reviews, only: %i[new create], module: :reservations
+    end
   end
 
   namespace :admins do
