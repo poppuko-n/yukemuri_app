@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_19_063255) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_19_221053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -83,6 +83,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_063255) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "reservation_id", null: false
+    t.integer "rating", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
+    t.index ["user_id", "reservation_id"], name: "index_reviews_on_user_id_and_reservation_id", unique: true
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "room_inventories", force: :cascade do |t|
     t.bigint "room_type_id", null: false
     t.date "date", null: false
@@ -128,6 +140,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_063255) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "reservations", "room_types"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "reservations"
+  add_foreign_key "reviews", "users"
   add_foreign_key "room_inventories", "room_types"
   add_foreign_key "room_types", "accommodations"
 end
