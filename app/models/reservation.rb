@@ -47,7 +47,7 @@ class Reservation < ApplicationRecord
     raise unless cancellable?
 
     transaction do
-      update!(status: 'cancelled')
+      update_column(:status, 'cancelled')
       release_room!
     end
   end
