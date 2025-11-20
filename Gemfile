@@ -16,8 +16,10 @@ gem 'turbo-rails'
 
 group :development do
   gem 'brakeman', require: false
+  gem 'foreman'
   gem 'html2haml'
   gem 'log_bench'
+  gem 'pry-rails'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
   gem 'web-console'
 end
