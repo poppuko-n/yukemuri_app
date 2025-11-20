@@ -13,7 +13,6 @@ class Users::ReservationsController < Users::ApplicationController
     redirect_to users_reservation_path(@reservation), alert: 'キャンセルできません。'
   end
 
-
   private
 
   def set_reservation

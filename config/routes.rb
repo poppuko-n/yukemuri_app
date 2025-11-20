@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { registrations: "admins/registrations", sessions: "admins/sessions" }
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
+  devise_for :admins, controllers: { registrations: 'admins/registrations', sessions: 'admins/sessions' }
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   root 'accommodations#index'
 
@@ -32,5 +32,5 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show destroy]
     resources :reservations, only: %i[index show edit update]
   end
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 end
