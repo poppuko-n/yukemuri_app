@@ -122,7 +122,7 @@ class Reservation < ApplicationRecord
   end
 
   def stay_date_range
-    (check_in_date...(check_in_date + night.days)).to_a
+    (check_in_date...(check_in_date + night.days - 1.day)).to_a
   end
 
   def use_room!
