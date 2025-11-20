@@ -12,7 +12,7 @@ class Accommodation < ApplicationRecord
   validates :prefecture, presence: true
   validates :name, presence: true
   validates :address, presence: true
-  validates :phone_number, presence: true, format: { with: /\A0\d{1,4}-?\d{1,4}-?\d{4}\z/  }
+  validates :phone_number, presence: true, format: { with: /\A0\d{1,4}-?\d{1,4}-?\d{4}\z/ }
   validates :category, presence: true
   validates :description, presence: true
   validates :name, uniqueness: { scope: :address }

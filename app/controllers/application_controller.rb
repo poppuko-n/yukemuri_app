@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_if_logged_in
     if admin_signed_in?
-      redirect_to admins_root_path, notice: t("devise.failure.already_authenticated")
+      redirect_to admins_root_path, notice: t('devise.failure.already_authenticated')
     elsif user_signed_in?
-      redirect_to users_root_path, notice: t("devise.failure.already_authenticated")
+      redirect_to users_root_path, notice: t('devise.failure.already_authenticated')
     end
   end
 end

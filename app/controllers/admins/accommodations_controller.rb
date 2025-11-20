@@ -42,7 +42,8 @@ class Admins::AccommodationsController < Admins::ApplicationController
   end
 
   def accommodation_params
-    params.require(:accommodation).permit(:name, :prefecture, :address, :phone_number, :category, :image, :description, :published)
+    params.require(:accommodation).permit(:name, :prefecture, :address, :phone_number, :category, :image, :description,
+                                          :published)
   end
 
   def accommodation_search_form_params

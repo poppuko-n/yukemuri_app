@@ -1,5 +1,4 @@
 class AccommodationSearchForm < ApplicationForm
-
   attribute :category
   attribute :prefecture
 
