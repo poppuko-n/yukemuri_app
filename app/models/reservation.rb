@@ -43,7 +43,7 @@ class Reservation < ApplicationRecord
     previous_status = status
 
     if update(params)
-      handle_status_transition(previous_status, params)
+      handle_status_transition(previous_status, status)
       true
     else
       false
@@ -69,12 +69,12 @@ class Reservation < ApplicationRecord
 
   private
 
-  def handle_status_transition(previous_status, currnt_status)
-    if previous_status != 'canceled' && currnt_status == 'canceled'
+  def handle_status_transition(previous_status, current_status)
+    if previous_status != 'cancelled' && current_status == 'cancelled'
       release_room!
     end
 
-    if previous_status == 'cancelled' && currnt_status == 'confirmed'
+    if previous_status == 'cancelled' && current_status == 'confirmed'
       use_room!
     end
   end
@@ -122,7 +122,7 @@ class Reservation < ApplicationRecord
   end
 
   def stay_date_range
-    (check_in_date...(check_in_date + night.days - 1.day)).to_a
+    (check_in_date...(check_in_date + night.days)).to_a
   end
 
   def use_room!
