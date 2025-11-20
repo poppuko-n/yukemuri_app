@@ -9,11 +9,18 @@ class Admins::ReservationsController < Admins::ApplicationController
   def edit; end
 
   def update
-    if @reservation.update_with_room_inventory(reservation_params)
-      redirect_to admins_reservations_path, notice: t('controller.updated')
-    else
-      render :edit, status: :unprocessable_content
+    case reservation_params[:status]
+    when 'cancelled'
+      @reservation.admin_cancel!
+    when 'confirmed'
+      @reservation.admin_confirm!
+    when 'checked_out'
+      @reservation.admin_check_out!
     end
+
+    redirect_to admins_reservations_path, notice: t('controller.updated')
+  rescue ActiveRecord::RecordInvalid
+    render :edit, status: :unprocessable_content
   end
 
   private
