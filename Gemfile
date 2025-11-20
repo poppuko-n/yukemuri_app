@@ -8,19 +8,16 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 gem "cssbundling-rails"
 gem "bootsnap", require: false
-gem "thruster", require: false
 gem "pg"
 gem "devise"
 gem "haml-rails"
 gem "simple_form"
 gem "enumerize"
 
-group :development, :test do
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
-  gem "brakeman", require: false
-end
-
 group :development do
+  gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
+  gem "brakeman", require: false
   gem "web-console"
   gem "html2haml"
+  gem "log_bench"
 end
