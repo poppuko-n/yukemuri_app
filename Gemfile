@@ -1,23 +1,23 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rails", "~> 8.0.4"
+gem 'rails', '~> 8.0.4'
 
-gem "propshaft"
-gem "puma"
-gem "jsbundling-rails"
-gem "turbo-rails"
-gem "cssbundling-rails"
-gem "bootsnap", require: false
-gem "pg"
-gem "devise"
-gem "haml-rails"
-gem "simple_form"
-gem "enumerize"
+gem 'bootsnap', require: false
+gem 'cssbundling-rails'
+gem 'devise'
+gem 'enumerize'
+gem 'haml-rails'
+gem 'jsbundling-rails'
+gem 'pg'
+gem 'propshaft'
+gem 'puma'
+gem 'simple_form'
+gem 'turbo-rails'
 
 group :development do
+  gem 'brakeman', require: false
+  gem 'html2haml'
+  gem 'log_bench'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
-  gem "brakeman", require: false
-  gem "web-console"
-  gem "html2haml"
-  gem "log_bench"
+  gem 'web-console'
 end
