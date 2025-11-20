@@ -8,7 +8,7 @@ class Admins::Accommodations::RoomTypes::RoomInventoriesController < Admins::Acc
     @room_inventory = @room_type.room_inventories.build(room_inventory_params)
 
     if @room_inventory.save
-      redirect_to admins_root_path, notice: t('controller.created')
+      redirect_to admins_accommodation_room_type_path(@accommodation, @room_type), notice: t('controller.created')
     else
       render :new, status: :unprocessable_content
     end
