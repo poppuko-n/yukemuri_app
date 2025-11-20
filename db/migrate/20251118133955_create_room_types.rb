@@ -11,6 +11,6 @@ class CreateRoomTypes < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :room_types, [:accommodation_id, :name], unique: true
+    add_index :room_types, %i[accommodation_id name], unique: true
   end
 end

@@ -11,6 +11,6 @@ class CreateAccommodations < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :accommodations, [:name, :address], unique: true
+    add_index :accommodations, %i[name address], unique: true
   end
 end

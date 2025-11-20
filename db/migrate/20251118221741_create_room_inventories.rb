@@ -7,6 +7,6 @@ class CreateRoomInventories < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :room_inventories, [:room_type_id, :date], unique: true
+    add_index :room_inventories, %i[room_type_id date], unique: true
   end
 end
