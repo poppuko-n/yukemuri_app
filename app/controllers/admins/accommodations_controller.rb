@@ -32,7 +32,7 @@ class Admins::AccommodationsController < Admins::ApplicationController
 
   def destroy
     @accommodation.destroy!
-    redirect_to admins_accommodations_path, notice: '宿を削除しました。'
+    redirect_to admins_accommodations_path, notice: t('controller.destroyed')
 
   rescue ActiveRecord::DeleteRestrictionError
     redirect_to admins_accommodation_path(@accommodation), alert: '予約があるため、この宿は削除できません。'
