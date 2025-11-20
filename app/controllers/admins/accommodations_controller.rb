@@ -31,7 +31,7 @@ class Admins::AccommodationsController < Admins::ApplicationController
   end
 
   def destroy
-    @accommodation.destroy
+    @accommodation.destroy!
     redirect_to admins_accommodations_path, notice: '宿を削除しました。'
 
   rescue ActiveRecord::DeleteRestrictionError

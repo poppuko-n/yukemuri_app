@@ -4,7 +4,7 @@ class Accommodation < ApplicationRecord
   ACCOMMODATION_CATEGORY = %w[guest_house inn hotel].freeze
 
   has_many :room_types, dependent: :destroy
-  has_many :reservations, dependent: :restrict_with_error
+  has_many :reservations, through: :room_types
   has_one_attached :image
 
   enumerize :category, in: ACCOMMODATION_CATEGORY
