@@ -63,6 +63,10 @@ class Reservation < ApplicationRecord
     end
   end
 
+  def reviewable?
+    reviews.blank? && checked_out?
+  end
+
   private
 
   def handle_status_transition(previous_status, currnt_status)

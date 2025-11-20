@@ -37,5 +37,6 @@
 
   - if @reservation.cancellable?
     = button_to '予約をキャンセル', users_reservation_path(@reservation), method: :patch, class: 'btn btn-outline-danger w-100'
-  = link_to 'レビューする', new_users_reservation_review_path(@reservation), class: 'btn btn-outline-success w-100 mt-2'
+  - if @reservation.reviewable?
+    = link_to 'レビューする', new_users_reservation_review_path(@reservation), class: 'btn btn-outline-success w-100 mt-2'
   = link_to '一覧に戻る', users_reservations_path, class: 'btn btn-outline-secondary w-100 mt-2'
