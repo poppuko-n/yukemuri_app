@@ -1,17 +1,17 @@
 GIT
   remote: https://github.com/SonicGarden/sgcop.git
-  revision: 212765c879998664ff5863d2646a98974875f785
+  revision: aaebc52f818be0c3aadc6a2d58251dbd848c6fe0
   branch: main
   specs:
-    sgcop (1.25.0)
+    sgcop (1.26.0)
       rubocop (~> 1.81.1)
       rubocop-capybara (~> 2.22.0)
-      rubocop-factory_bot (~> 2.27.0)
+      rubocop-factory_bot (~> 2.28.0)
       rubocop-performance (~> 1.26.0)
       rubocop-rails (~> 2.33.3)
       rubocop-rake (~> 0.7.1)
-      rubocop-rspec (~> 3.7.0)
-      rubocop-rspec_rails (~> 2.31.0)
+      rubocop-rspec (~> 3.8.0)
+      rubocop-rspec_rails (~> 2.32.0)
 
 GEM
   remote: https://rubygems.org/
@@ -171,7 +171,7 @@ GEM
     marcel (1.1.0)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.26.2)
     msgpack (1.8.0)
     net-http (0.8.0)
       uri (>= 0.11.1)
@@ -301,7 +301,7 @@ GEM
     rubocop-capybara (2.22.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-factory_bot (2.27.1)
+    rubocop-factory_bot (2.28.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     rubocop-performance (1.26.1)
@@ -317,10 +317,10 @@ GEM
     rubocop-rake (0.7.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1)
-    rubocop-rspec (3.7.0)
+    rubocop-rspec (3.8.0)
       lint_roller (~> 1.1)
-      rubocop (~> 1.72, >= 1.72.1)
-    rubocop-rspec_rails (2.31.0)
+      rubocop (~> 1.81)
+    rubocop-rspec_rails (2.32.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
