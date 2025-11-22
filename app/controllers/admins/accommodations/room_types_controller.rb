@@ -26,11 +26,11 @@ class Admins::Accommodations::RoomTypesController < Admins::Accommodations::Appl
   end
 
   def destroy
-    @room_type.destroy!
-    redirect_to admins_root_path, notice: t('controller.destroyed')
-
-  rescue ActiveRecord::DeleteRestrictionError
-    redirect_to admins_accommodation_room_type_path(@accommodation, @room_type), alert: '予約があるため、この宿は削除できません。'
+    if @room_type.destroy
+      redirect_to admins_root_path, notice: t('controller.destroyed')
+    else
+      redirect_to admins_accommodation_room_type_path(@accommodation, @room_type), alert: '予約があるため、この宿は削除できません。'
+    end
   end
 
   private
