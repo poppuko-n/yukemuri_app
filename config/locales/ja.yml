@@ -183,6 +183,7 @@ ja:
       validate_check_in_date_range: "は指定可能な期間内にしてください"
       validate_room_inventory: "は在庫不足のため予約できません"
       validate_total_guest_count: "の定員を超過しています"
+      validate_image_presence: "をアップしてください"
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"

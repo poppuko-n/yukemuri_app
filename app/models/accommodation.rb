@@ -17,9 +17,15 @@ class Accommodation < ApplicationRecord
   validates :description, presence: true
   validates :name, uniqueness: { scope: :address }
 
+  validate :validate_image_presence
+
   scope :published, -> { where(published: true) }
 
   def prefecture_name
     Prefecture::LIST.key(prefecture)
+  end
+
+  def validate_image_presence
+    errors.add(:image, :validate_image_presence) unless image.attached?
   end
 end
