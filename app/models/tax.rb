@@ -1,7 +1,17 @@
 class Tax
-  RATE = '1.10'.freeze
+  RATE = '10'.freeze
 
-  def self.calculate_with_tax(price)
-    (BigDecimal(price.to_s) * BigDecimal(RATE)).floor
+  class << self
+
+    def tax_price(price)
+      price_bd = BigDecimal(price.to_s)
+      tax_bd = BigDecimal(RATE.to_s)
+
+      (price_bd * tax_bd / 100).floor
+    end
+
+    def tax_included_price(price)
+      price + tax_price(price)
+    end
   end
 end

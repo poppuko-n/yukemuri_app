@@ -28,11 +28,13 @@ class Reservation < ApplicationRecord
 
   scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
 
-  def calculate_total_amount
+  def calculate_total_price
     return if night_count.blank? || adult_count.blank? || child_count.blank?
 
-    subtotal = adult_amount + child_amount
-    self.total_amount = Tax.calculate_with_tax(subtotal).to_i
+    total_price = adult_amount + child_amount
+    self.total_price = total_price
+    self.tax_price = Tax.tax_price(total_price)
+    self.tax_included_price = Tax.tax_included_price(total_price)
   end
 
   def cancellable?

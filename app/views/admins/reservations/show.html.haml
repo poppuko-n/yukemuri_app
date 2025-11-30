@@ -32,8 +32,8 @@
         = "#{@reservation.child_count}名"
 
       %p
-        %strong= Reservation.human_attribute_name(:total_price)
-        = number_to_currency(@reservation.total_price)
+        %strong= Reservation.human_attribute_name(:tax_included_price)
+        = number_to_currency(@reservation.tax_included_price)
 
       %p
         %strong= Reservation.human_attribute_name(:status)

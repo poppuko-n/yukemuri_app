@@ -10,7 +10,7 @@
         %th= RoomType.human_attribute_name(:name)
         %th= Reservation.human_attribute_name(:adult_count)
         %th= Reservation.human_attribute_name(:child_count)
-        %th= Reservation.human_attribute_name(:total_price)
+        %th= Reservation.human_attribute_name(:tax_included_price)
         %th= Reservation.human_attribute_name(:status)
         %th
 
@@ -23,6 +23,6 @@
           %td= reservation.room_type.name
           %td #{reservation.adult_count}名
           %td #{reservation.child_count}名
-          %td= number_to_currency(reservation.total_price)
+          %td= number_to_currency(reservation.tax_included_price)
           %td= reservation.status_text
           %td= link_to "詳細", users_reservation_path(reservation), class: "btn btn-sm btn-primary"
