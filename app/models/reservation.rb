@@ -62,25 +62,35 @@ class Reservation < ApplicationRecord
     reviews.blank? && checked_out?
   end
 
-  def admin_cancel!
-    transaction do
-      update_column(:status, 'cancelled')
-      release_room!
-    end
-  end
+  def handle_status_change(new_status)
+    return false if checked_out? && new_status != 'checked_out'
 
-  def admin_confirm!
-    transaction do
-      update!({ status: 'confirmed' })
-      use_room!
+    case new_status
+    when 'confirmed'
+      self.status = 'confirmed'
+      reserve
+    when 'cancelled'
+      cancel
+    when 'checked_out'
+      check_out
     end
-  end
-
-  def admin_check_out!
-    update_column(:status, 'checked_out')
   end
 
   private
+
+  def check_out
+    return false unless check_outable?
+
+    update_column(:status, 'checked_out')
+  end
+
+  def check_out_date
+    check_in_date + night_count.days
+  end
+
+  def check_outable?
+    confirmed? && Date.current >= check_out_date
+  end
 
   def base_price_decimal
     BigDecimal(room_type.base_price.to_s)

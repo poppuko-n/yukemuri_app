@@ -9,18 +9,12 @@ class Admins::ReservationsController < Admins::ApplicationController
   def edit; end
 
   def update
-    case reservation_params[:status]
-    when 'cancelled'
-      @reservation.admin_cancel!
-    when 'confirmed'
-      @reservation.admin_confirm!
-    when 'checked_out'
-      @reservation.admin_check_out!
+    if @reservation.handle_status_change(reservation_params[:status])
+      redirect_to admins_reservations_path, notice: t('controller.updated')
+    else
+      flash.now[:alert] = t('controller.cannot_updated')
+      render :edit, status: :unprocessable_content
     end
-
-    redirect_to admins_reservations_path, notice: t('controller.updated')
-  rescue ActiveRecord::RecordInvalid
-    render :edit, status: :unprocessable_content
   end
 
   private

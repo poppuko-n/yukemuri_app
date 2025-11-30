@@ -15,6 +15,7 @@ ja:
     created: 登録しました。
     updated: 更新しました。
     destroyed: 削除しました。
+    cannot_updated: 更新できませんでした。
   reservations:
     cancelled: "予約をキャンセルしました。"
     cannot_cancel: "キャンセルできません。"
