@@ -34,6 +34,6 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   end
 
   def reservation_params
-    params.require(:reservation).permit(:check_in_date, :night_count, :adult_count, :child_count, :total_amount)
+    params.require(:reservation).permit(:check_in_date, :night_count, :adult_count, :child_count, :total_price)
   end
 end

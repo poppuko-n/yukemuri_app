@@ -19,8 +19,6 @@ class Reservation < ApplicationRecord
   validates :night_count, presence: true, numericality: { only_integer: true, in: NIGHT_RANGE }
   validates :adult_count, numericality: { only_integer: true, greater_than: 0 }
   validates :child_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :total_amount, numericality: { only_integer: true, greater_than: 0 }
-  validates :status, presence: true
 
   validate :validate_check_in_date_range
   validate :validate_room_inventory

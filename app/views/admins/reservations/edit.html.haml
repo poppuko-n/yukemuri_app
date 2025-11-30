@@ -32,8 +32,8 @@
         = "#{@reservation.child_count}名"
 
       %p
-        %strong= Reservation.human_attribute_name(:total_amount)
-        = number_to_currency(@reservation.total_amount)
+        %strong= Reservation.human_attribute_name(:total_price)
+        = number_to_currency(@reservation.total_price)
 
       = simple_form_for [:admins, @reservation] do |f|
         = f.input :status
