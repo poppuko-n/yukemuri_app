@@ -11,7 +11,6 @@ class Reservation < ApplicationRecord
   NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
   MIN_CHECK_IN_DAYS = 1
   MAX_CHECK_IN_DAYS = 90
-  NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
 
   enumerize :status, in: RESERVATION_STATUSES, predicates: true
 
@@ -24,9 +23,17 @@ class Reservation < ApplicationRecord
   validate :validate_room_inventory
   validate :validate_total_guest_count
 
-  after_create :use_room!
-
   scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
+
+  def reserve
+    ActiveRecord::Base.transaction do
+      save!
+      use_room!
+      true
+    end
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
 
   def calculate_total_price
     return if night_count.blank? || adult_count.blank? || child_count.blank?
@@ -88,7 +95,7 @@ class Reservation < ApplicationRecord
   end
 
   def validate_check_in_date_range
-    range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS)
+    range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS.days)
 
     errors.add(:check_in_date, :validate_check_in_date_range) unless range.include?(check_in_date)
   end
@@ -96,7 +103,7 @@ class Reservation < ApplicationRecord
   def validate_room_inventory
     return if check_in_date.blank? || night_count.blank?
 
-    inventories_by_date = room_type.room_inventories.where(date: stay_date_range).index_by(&:date)
+    inventories_by_date = room_type.room_inventories.where(date: stay_date_range).default_order.lock.index_by(&:date)
 
     unavailable = stay_date_range.any? do |date|
       inventory = inventories_by_date[date]
@@ -122,13 +129,13 @@ class Reservation < ApplicationRecord
 
   def use_room!
     stay_date_range.each do |date|
-      room_type.room_inventories.lock.find_by!(date: date).use_room!
+      room_type.room_inventories.find_by!(date: date).use_room!
     end
   end
 
   def release_room!
     stay_date_range.each do |date|
-      room_type.room_inventories.lock.find_by!(date: date).release_room!
+      room_type.room_inventories.find_by!(date: date).release_room!
     end
   end
 end
