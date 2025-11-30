@@ -11,11 +11,11 @@
 
       %p
         %strong チェックアウト日
-        = l(@reservation.check_in_date + @reservation.night.days)
+        = l(@reservation.check_in_date + @reservation.night_count.days)
 
       %p
-        %strong= Reservation.human_attribute_name(:night)
-        = "#{@reservation.night}泊"
+        %strong= Reservation.human_attribute_name(:night_count)
+        = "#{@reservation.night_count}泊"
 
       %p
         %strong= Reservation.human_attribute_name(:adult_count)
@@ -31,7 +31,7 @@
 
   = simple_form_for(@reservation, url: users_accommodation_room_type_reservations_path(@accommodation, @room_type), method: :post) do |f|
     = f.hidden_field :check_in_date
-    = f.hidden_field :night
+    = f.hidden_field :night_count
     = f.hidden_field :adult_count
     = f.hidden_field :child_count
     = f.button :submit, '予約確定', class: 'btn-outline-primary w-100'

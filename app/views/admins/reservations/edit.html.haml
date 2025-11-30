@@ -17,11 +17,11 @@
 
       %p
         %strong チェックアウト日
-        = l(@reservation.check_in_date + @reservation.night.days)
+        = l(@reservation.check_in_date + @reservation.night_count.days)
 
       %p
-        %strong= Reservation.human_attribute_name(:night)
-        = "#{@reservation.night}泊"
+        %strong= Reservation.human_attribute_name(:night_count)
+        = "#{@reservation.night_count}泊"
 
       %p
         %strong= Reservation.human_attribute_name(:adult_count)

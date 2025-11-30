@@ -5,7 +5,7 @@
     %thead
       %tr
         %th= Reservation.human_attribute_name(:check_in_date)
-        %th= Reservation.human_attribute_name(:night)
+        %th= Reservation.human_attribute_name(:night_count)
         %th= Accommodation.human_attribute_name(:name)
         %th= RoomType.human_attribute_name(:name)
         %th= Reservation.human_attribute_name(:adult_count)
@@ -18,7 +18,7 @@
       - @reservations.each do |reservation|
         %tr
           %td= reservation.check_in_date
-          %td= reservation.night
+          %td= reservation.night_count
           %td= reservation.room_type.accommodation.name
           %td= reservation.room_type.name
           %td #{reservation.adult_count}名

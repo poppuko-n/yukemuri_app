@@ -16,7 +16,7 @@ class Reservation < ApplicationRecord
   enumerize :status, in: RESERVATION_STATUSES, predicates: true
 
   validates :check_in_date, presence: true
-  validates :night, presence: true, numericality: { only_integer: true, in: NIGHT_RANGE }
+  validates :night_count, presence: true, numericality: { only_integer: true, in: NIGHT_RANGE }
   validates :adult_count, numericality: { only_integer: true, greater_than: 0 }
   validates :child_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :total_amount, numericality: { only_integer: true, greater_than: 0 }
@@ -33,7 +33,7 @@ class Reservation < ApplicationRecord
   scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
 
   def calculate_total_amount
-    return if night.blank? || adult_count.blank? || child_count.blank?
+    return if night_count.blank? || adult_count.blank? || child_count.blank?
 
     subtotal = adult_amount + child_amount
     self.total_amount = Tax.calculate_with_tax(subtotal).to_i
@@ -81,12 +81,12 @@ class Reservation < ApplicationRecord
   end
 
   def adult_amount
-    base_price_decimal * BigDecimal(night.to_s) * BigDecimal(adult_count.to_s)
+    base_price_decimal * BigDecimal(night_count.to_s) * BigDecimal(adult_count.to_s)
   end
 
   def child_amount
     child_unit = PricingRule.child_price(base_price_decimal)
-    child_unit * BigDecimal(night.to_s) * BigDecimal(child_count.to_s)
+    child_unit * BigDecimal(night_count.to_s) * BigDecimal(child_count.to_s)
   end
 
   def validate_check_in_date_range
@@ -96,7 +96,7 @@ class Reservation < ApplicationRecord
   end
 
   def validate_room_inventory
-    return if check_in_date.blank? || night.blank?
+    return if check_in_date.blank? || night_count.blank?
 
     inventories_by_date = room_type.room_inventories.where(date: stay_date_range).index_by(&:date)
 
@@ -105,7 +105,7 @@ class Reservation < ApplicationRecord
       inventory.nil? || inventory.remaining_room <= 0
     end
 
-    errors.add(:night, :validate_room_inventory) if unavailable
+    errors.add(:night_count, :validate_room_inventory) if unavailable
   end
 
   def validate_total_guest_count
@@ -119,7 +119,7 @@ class Reservation < ApplicationRecord
   end
 
   def stay_date_range
-    (check_in_date...(check_in_date + night.days)).to_a
+    (check_in_date...(check_in_date + night_count.days)).to_a
   end
 
   def use_room!

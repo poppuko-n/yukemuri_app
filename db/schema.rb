@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_19_221053) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_30_050536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -72,9 +72,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_221053) do
     t.bigint "user_id", null: false
     t.bigint "room_type_id", null: false
     t.date "check_in_date", null: false
-    t.integer "night", null: false
-    t.integer "adult_count"
-    t.integer "child_count"
+    t.integer "night_count", null: false
+    t.integer "adult_count", null: false
+    t.integer "child_count", null: false
     t.integer "total_amount", null: false
     t.string "status", null: false
     t.datetime "created_at", null: false
