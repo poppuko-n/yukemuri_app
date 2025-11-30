@@ -26,8 +26,6 @@ class Reservation < ApplicationRecord
   validate :validate_room_inventory
   validate :validate_total_guest_count
 
-  attribute :status, default: 'confirmed'
-
   after_create :use_room!
 
   scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
