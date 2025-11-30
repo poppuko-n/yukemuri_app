@@ -7,8 +7,11 @@ class Admins::UsersController < Admins::ApplicationController
   def show; end
 
   def destroy
-    @user.destroy!
-    redirect_to admins_users_path, notice: t('controller.destroyed'), status: :see_other
+    if @user.destroy
+      redirect_to admins_users_path, notice: t('controller.destroyed'), status: :see_other
+    else
+      redirect_to admins_user_path(@user), alert: '予約があるため、このユーザは削除できません。'
+    end
   end
 
   private
