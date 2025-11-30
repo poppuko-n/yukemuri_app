@@ -31,7 +31,6 @@ ja:
         capacity: "定員"
         base_price: "基本料金（税抜き）"
         description: "備考（設備など）"
-        position: "表示順"
         image: "画像"
       room_inventory:
         date: "日付"

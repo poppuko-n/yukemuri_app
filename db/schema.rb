@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_30_050536) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_30_052515) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -111,11 +111,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_30_050536) do
     t.integer "capacity", null: false
     t.integer "base_price", null: false
     t.text "description", null: false
-    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["accommodation_id", "name"], name: "index_room_types_on_accommodation_id_and_name", unique: true
-    t.index ["accommodation_id"], name: "index_room_types_on_accommodation_id"
   end
 
   create_table "users", force: :cascade do |t|

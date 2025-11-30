@@ -40,6 +40,6 @@ class Admins::Accommodations::RoomTypesController < Admins::Accommodations::Appl
   end
 
   def room_type_params
-    params.require(:room_type).permit(:name, :capacity, :base_price, :image, :description, :position)
+    params.require(:room_type).permit(:name, :capacity, :base_price, :image, :description)
   end
 end
