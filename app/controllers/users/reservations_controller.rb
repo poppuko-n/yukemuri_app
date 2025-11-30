@@ -7,10 +7,11 @@ class Users::ReservationsController < Users::ApplicationController
   def show; end
 
   def update
-    @reservation.cancel!
-    redirect_to users_reservation_path(@reservation), notice: '予約をキャンセルしました。'
-  rescue => e
-    redirect_to users_reservation_path(@reservation), alert: 'キャンセルできません。'
+    if @reservation.cancel
+      redirect_to users_reservation_path(@reservation), notice: t('reservations.cancelled')
+    else
+      redirect_to users_reservation_path(@reservation), alert: t('reservations.cannot_cancel')
+    end
   end
 
   private

@@ -35,6 +35,16 @@ class Reservation < ApplicationRecord
     false
   end
 
+  def cancel
+    return false unless cancellable?
+
+    ActiveRecord::Base.transaction do
+      update_column(:status, 'cancelled')
+      release_room!
+      true
+    end
+  end
+
   def calculate_total_price
     return if night_count.blank? || adult_count.blank? || child_count.blank?
 
@@ -46,15 +56,6 @@ class Reservation < ApplicationRecord
 
   def cancellable?
     confirmed? && check_in_date > Date.current + 1.day
-  end
-
-  def cancel!
-    raise unless cancellable?
-
-    transaction do
-      update_column(:status, 'cancelled')
-      release_room!
-    end
   end
 
   def reviewable?

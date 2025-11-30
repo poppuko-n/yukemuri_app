@@ -15,6 +15,9 @@ ja:
     created: 登録しました。
     updated: 更新しました。
     destroyed: 削除しました。
+  reservations:
+    cancelled: "予約をキャンセルしました。"
+    cannot_cancel: "キャンセルできません。"
   activerecord:
     attributes:
       accommodation:
