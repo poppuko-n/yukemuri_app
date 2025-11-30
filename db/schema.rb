@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_30_052515) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_30_053633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,7 +92,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_30_052515) do
     t.datetime "updated_at", null: false
     t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
     t.index ["user_id", "reservation_id"], name: "index_reviews_on_user_id_and_reservation_id", unique: true
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "room_inventories", force: :cascade do |t|
