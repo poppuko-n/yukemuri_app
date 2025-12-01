@@ -37,4 +37,4 @@
 
       = simple_form_for [:admins, @reservation] do |f|
         = f.input :status
-        = f.button :submit, class: 'btn btn-outline-danger w-100'
+        = f.button :submit, data: { turbo_confirm: '本当にステータスを変更しますか?' }, class: 'btn btn-outline-danger w-100'

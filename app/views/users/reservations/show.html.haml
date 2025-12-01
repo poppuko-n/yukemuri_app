@@ -36,7 +36,7 @@
         = @reservation.status_text
 
   - if @reservation.cancellable?
-    = button_to '予約をキャンセル', users_reservation_path(@reservation), method: :patch, class: 'btn btn-outline-danger w-100'
+    = button_to '予約をキャンセル', users_reservation_path(@reservation), method: :patch, data: { turbo_confirm: '本当にキャンセルしますか？'}, class: 'btn btn-outline-danger w-100'
   - if @reservation.reviewable?
     = link_to 'レビューする', new_users_reservation_review_path(@reservation), class: 'btn btn-outline-success w-100 mt-2'
   - elsif @reservation.reviews.present?
