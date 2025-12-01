@@ -46,10 +46,7 @@ class Reservation < ApplicationRecord
   end
 
   def calculate_total_price
-    return if night_count.blank? || adult_count.blank? || child_count.blank?
-
-    total_price = adult_amount + child_amount
-    self.total_price = total_price
+    self.total_price = adult_amount + child_amount
     self.tax_price = Tax.tax_price(total_price)
     self.tax_included_price = Tax.tax_included_price(total_price)
   end

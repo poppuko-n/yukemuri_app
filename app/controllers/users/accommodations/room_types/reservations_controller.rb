@@ -7,8 +7,8 @@ class Users::Accommodations::RoomTypes::ReservationsController < Users::Accommod
   def confirm
     return redirect_to new_users_accommodation_room_type_reservation_path(@accommodation, @room_type) if request.get?
 
-    @reservation.calculate_total_price
     if @reservation.valid?
+      @reservation.calculate_total_price
       render :confirm
     else
       render :new, status: :unprocessable_content
