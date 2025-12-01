@@ -39,5 +39,5 @@
         %strong= Reservation.human_attribute_name(:status)
         = @reservation.status_text
 
-  = link_to '編集', edit_admins_reservation_path(@reservation), class: 'btn btn-outline-primary w-100'
+  = link_to '編集', edit_admins_reservation_path(@reservation), class: 'btn btn-outline-primary w-100' unless @reservation.checked_out?
   = link_to '一覧に戻る', admins_reservations_path, class: 'btn btn-outline-secondary w-100 mt-2'
