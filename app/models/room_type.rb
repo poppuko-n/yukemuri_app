@@ -8,4 +8,12 @@ class RoomType < ApplicationRecord
   validates :capacity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :base_price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :description, presence: true
+
+  validate :validate_image_presence
+
+  private
+
+  def validate_image_presence
+    errors.add(:image, :validate_image_presence) unless image.attached?
+  end
 end
