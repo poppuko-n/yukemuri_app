@@ -6,16 +6,16 @@ class Reservation < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   RESERVATION_STATUSES = %w[confirmed checked_out cancelled].freeze
-  MIN_NIGHTS = 1
-  MAX_NIGHTS = 5
-  NIGHT_RANGE = MIN_NIGHTS..MAX_NIGHTS
+  MIN_NIGHTS_COUNT = 1
+  MAX_NIGHTS_COUNT = 5
+  NIGHT_COUNT_RANGE = MIN_NIGHTS_COUNT..MAX_NIGHTS_COUNT
   MIN_CHECK_IN_DAYS = 1
   MAX_CHECK_IN_DAYS = 90
 
   enumerize :status, in: RESERVATION_STATUSES, predicates: true
 
   validates :check_in_date, presence: true
-  validates :night_count, presence: true, numericality: { only_integer: true, in: NIGHT_RANGE }
+  validates :night_count, presence: true, numericality: { only_integer: true, in: NIGHT_COUNT_RANGE }
   validates :adult_count, numericality: { only_integer: true, greater_than: 0 }
   validates :child_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 

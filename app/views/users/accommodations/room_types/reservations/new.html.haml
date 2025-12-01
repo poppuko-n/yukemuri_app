@@ -17,7 +17,7 @@
 
     = simple_form_for(@reservation, url: confirm_users_accommodation_room_type_reservations_path(@accommodation, @room_type), method: :post, data: { turbo: false }) do |f|
       = f.input :check_in_date, as: :date, html5: true
-      = f.input :night_count, collection: Reservation::NIGHT_RANGE
+      = f.input :night_count, collection: Reservation::NIGHT_COUNT_RANGE
       = f.input :adult_count
       = f.input :child_count
       = f.button :submit, '予約確認へ', class: 'btn-outline-success w-100'
