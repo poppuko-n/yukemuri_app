@@ -2,6 +2,6 @@
   = f.input :name, required: true
   = f.input :capacity, required: true
   = f.input :base_price, required: true
-  = f.input :image, as: :file
+  = f.input :image, as: :file, required: true
   = f.input :description, required: true, input_html: { row: 5 }
   = f.button :submit, class: 'btn btn-outline-primary'
