@@ -1,7 +1,7 @@
 class Users::ReservationsController < Users::ApplicationController
   before_action :set_reservation, only: %i[show update]
   def index
-    @reservations = current_user.reservations.includes(room_type: :accommodation)
+    @reservations = current_user.reservations.includes(room_type: :accommodation).default_order
   end
 
   def show; end

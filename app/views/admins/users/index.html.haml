@@ -14,4 +14,4 @@
           %td= link_to user.name, admins_user_path(user)
           %td= user.email
           %td= user.sign_in_count
-          %td= user.current_sign_in_at ? l(user.current_sign_in_at) : '-'
+          %td= user.current_sign_in_at ? l(user.current_sign_in_at, format: :long) : '-'
