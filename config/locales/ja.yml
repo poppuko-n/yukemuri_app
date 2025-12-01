@@ -34,6 +34,7 @@ ja:
         name: "部屋名"
         capacity: "定員"
         base_price: "基本料金（税抜き）"
+        tax_included_price: "基本料金(税込み)"
         description: "備考（設備など）"
         image: "画像"
       room_inventory:

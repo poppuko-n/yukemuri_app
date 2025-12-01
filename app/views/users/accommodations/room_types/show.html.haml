@@ -14,8 +14,8 @@
             %dd= @room_type.name
             %dt= RoomType.human_attribute_name(:capacity)
             %dd= @room_type.capacity
-            %dt= RoomType.human_attribute_name(:base_price)
-            %dd= number_to_currency(@room_type.base_price)
+            %dt= RoomType.human_attribute_name(:tax_included_price)
+            %dd= number_to_currency(Tax.tax_included_price(@room_type.base_price))
             %dt= RoomType.human_attribute_name(:description)
             %dd= @room_type.description
   = link_to '宿泊予約', new_users_accommodation_room_type_reservation_path(@accommodation, @room_type, @reservation), class: 'btn btn-outline-success w-100 mt-4'
