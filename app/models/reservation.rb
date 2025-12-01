@@ -61,6 +61,7 @@ class Reservation < ApplicationRecord
 
   def handle_status_change(new_status)
     return false if checked_out? && new_status != 'checked_out'
+    return true if status == new_status
 
     case new_status
     when 'confirmed'
