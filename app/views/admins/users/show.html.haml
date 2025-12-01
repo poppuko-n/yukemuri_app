@@ -13,11 +13,7 @@
         %dt.col-3= User.human_attribute_name(:sign_in_count)
         %dd.col-9= @user.sign_in_count
         %dt.col-3= User.human_attribute_name(:current_sign_in_at)
-        %dd.col-9= @user.current_sign_in_at ? l(@user.current_sign_in_at) : '-'
-        %dt.col-3= User.human_attribute_name(:last_sign_in_at)
-        %dd.col-9= @user.last_sign_in_at ? l(@user.last_sign_in_at) : '-'
-        %dt.col-3= User.human_attribute_name(:created_at)
-        %dd.col-9= l(@user.created_at)
+        %dd.col-9= @user.current_sign_in_at ? l(@user.current_sign_in_at, format: :long) : '-'
 
   .text-end.mt-5
     = button_to t('削除'), admins_user_path(@user), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: 'btn btn-outline-danger'
