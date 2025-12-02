@@ -40,6 +40,7 @@ ja:
       room_inventory:
         date: "日付"
         remaining_room: "在庫数"
+        diff: "増減数"
       reservation:
         check_in_date: "宿泊日"
         night_count: "泊数"
@@ -190,6 +191,7 @@ ja:
       validate_room_inventory: "は在庫不足のため予約できません"
       validate_total_guest_count: "の定員を超過しています"
       validate_image_presence: "をアップしてください"
+      validate_update_diff: "を適用すると在庫がマイナスになります"
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"

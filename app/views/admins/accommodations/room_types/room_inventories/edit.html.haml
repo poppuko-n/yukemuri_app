@@ -1,6 +1,7 @@
 .container.mt-4
   .fs-2 #{l(@room_inventory.date)} 部屋在庫編集
 
+  %p.fs-5.mt-2 現在の空室: #{@room_inventory.remaining_room}室
   = simple_form_for([:admins, @accommodation, @room_type, @room_inventory]) do |f|
-    = f.input :remaining_room
+    = f.input :diff
     = f.button :submit, class: 'btn-primary'

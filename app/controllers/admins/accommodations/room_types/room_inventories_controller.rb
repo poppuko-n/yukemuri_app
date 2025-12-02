@@ -17,7 +17,8 @@ class Admins::Accommodations::RoomTypes::RoomInventoriesController < Admins::Acc
   def edit; end
 
   def update
-    if @room_inventory.update(update_room_inventory_params)
+    diff = update_room_inventory_params[:diff].to_i
+    if @room_inventory.apply_diff(diff)
       redirect_to admins_accommodation_room_type_path(@accommodation, @room_type), notice: t('controller.updated')
     else
       render :edit, status: :unprocessable_content
@@ -35,6 +36,6 @@ class Admins::Accommodations::RoomTypes::RoomInventoriesController < Admins::Acc
   end
 
   def update_room_inventory_params
-    params.require(:room_inventory).permit(:remaining_room)
+    params.require(:room_inventory).permit(:diff)
   end
 end
