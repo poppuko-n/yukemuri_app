@@ -111,14 +111,7 @@ class Reservation < ApplicationRecord
   def validate_room_inventory
     return if check_in_date.blank? || night_count.blank?
 
-    inventories_by_date = room_type.room_inventories.where(date: stay_date_range).default_order.lock.index_by(&:date)
-
-    unavailable = stay_date_range.any? do |date|
-      inventory = inventories_by_date[date]
-      inventory.nil? || inventory.remaining_room <= 0
-    end
-
-    errors.add(:night_count, :validate_room_inventory) if unavailable
+    errors.add(:night_count, :validate_room_inventory) unless room_type.available?(stay_date_range)
   end
 
   def validate_total_guest_count
@@ -137,13 +130,18 @@ class Reservation < ApplicationRecord
 
   def use_room!
     stay_date_range.each do |date|
-      room_type.room_inventories.find_by!(date: date).use_room!
+      inventory = room_type.room_inventories.lock.find_by!(date: date)
+
+      raise ActiveRecord::RecordInvalid if inventory.remaining_room <= 0
+
+      inventory.use_room!
     end
   end
 
   def release_room!
     stay_date_range.each do |date|
-      room_type.room_inventories.find_by!(date: date).release_room!
+      inventory = room_type.room_inventories.lock.find_by!(date: date)
+      inventory.release_room!
     end
   end
 end
