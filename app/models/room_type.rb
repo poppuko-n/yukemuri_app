@@ -11,9 +11,14 @@ class RoomType < ApplicationRecord
 
   validate :validate_image_presence
 
+  def available?(stay_date_range)
+    room_inventories.where(date: stay_date_range).where('remaining_room > 0').count == stay_date_range.size
+  end
+
   private
 
   def validate_image_presence
     errors.add(:image, :validate_image_presence) unless image.attached?
   end
+
 end
