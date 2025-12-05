@@ -1,3 +1,18 @@
+GIT
+  remote: https://github.com/SonicGarden/sgcop.git
+  revision: 212765c879998664ff5863d2646a98974875f785
+  branch: main
+  specs:
+    sgcop (1.25.0)
+      rubocop (~> 1.81.1)
+      rubocop-capybara (~> 2.22.0)
+      rubocop-factory_bot (~> 2.27.0)
+      rubocop-performance (~> 1.26.0)
+      rubocop-rails (~> 2.33.3)
+      rubocop-rake (~> 0.7.1)
+      rubocop-rspec (~> 3.7.0)
+      rubocop-rspec_rails (~> 2.31.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,7 +87,9 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    ast (2.4.3)
     base64 (0.3.0)
+    bcrypt (3.1.20)
     benchmark (0.5.0)
     bigdecimal (3.3.1)
     bindex (0.8.1)
@@ -81,20 +98,44 @@ GEM
     brakeman (7.1.1)
       racc
     builder (3.3.0)
+    coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
+    curses (1.5.3)
     date (3.5.0)
-    debug (1.11.0)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
+    devise (4.9.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     drb (2.2.3)
+    enumerize (2.8.1)
+      activesupport (>= 3.2)
     erb (6.0.0)
     erubi (1.13.1)
+    erubis (2.7.0)
+    foreman (0.90.0)
+      thor (~> 1.4)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    haml (7.0.2)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    haml-rails (3.0.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
+    html2haml (2.3.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.1)
@@ -104,7 +145,20 @@ GEM
       reline (>= 0.4.2)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
+    json (2.16.0)
+    language_server-protocol (3.17.0.5)
+    lint_roller (1.1.0)
+    log_bench (0.5.3)
+      curses (~> 1.5)
+      lograge (~> 0.14)
+      net-http (~> 0.6)
+      zeitwerk (~> 2.7)
     logger (1.7.0)
+    lograge (0.14.0)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -115,9 +169,12 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.26.1)
     msgpack (1.8.0)
+    net-http (0.8.0)
+      uri (>= 0.11.1)
     net-imap (0.5.12)
       date
       net-protocol
@@ -144,13 +201,31 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
+    parallel (1.27.0)
+    parser (3.3.10.0)
+      ast (~> 2.4.1)
+      racc
+    pg (1.6.2)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-aarch64-linux-musl)
+    pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-darwin)
+    pg (1.6.2-x86_64-linux)
+    pg (1.6.2-x86_64-linux-musl)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
+    prism (1.6.0)
     propshaft (1.3.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
+    pry (0.15.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.11)
+      pry (>= 0.13.0)
     psych (5.2.6)
       date
       stringio
@@ -195,21 +270,73 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.3.1)
     rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
+    regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
+    request_store (1.7.0)
+      rack (>= 1.4)
+    responders (3.2.0)
+      actionpack (>= 7.0)
+      railties (>= 7.0)
+    rubocop (1.81.7)
+      json (~> 2.3)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.47.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.48.0)
+      parser (>= 3.3.7.2)
+      prism (~> 1.4)
+    rubocop-capybara (2.22.1)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+    rubocop-factory_bot (2.27.1)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+    rubocop-performance (1.26.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.47.1, < 2.0)
+    rubocop-rails (2.33.4)
+      activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
+      rack (>= 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
+    rubocop-rspec (3.7.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+    rubocop-rspec_rails (2.31.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+      rubocop-rspec (~> 3.5)
+    ruby-progressbar (1.13.0)
+    ruby_parser (3.21.1)
+      racc (~> 1.5)
+      sexp_processor (~> 4.16)
     securerandom (0.4.1)
+    sexp_processor (4.17.4)
+    simple_form (5.4.0)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     stringio (3.1.8)
+    temple (0.10.4)
     thor (1.4.0)
-    thruster (0.1.16)
-    thruster (0.1.16-aarch64-linux)
-    thruster (0.1.16-arm64-darwin)
-    thruster (0.1.16-x86_64-darwin)
-    thruster (0.1.16-x86_64-linux)
+    tilt (2.6.1)
     timeout (0.4.4)
     tsort (0.2.0)
     turbo-rails (2.0.20)
@@ -217,8 +344,13 @@ GEM
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (3.2.0)
+      unicode-emoji (~> 4.1)
+    unicode-emoji (4.1.0)
     uri (1.1.1)
     useragent (0.16.11)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -246,12 +378,20 @@ DEPENDENCIES
   bootsnap
   brakeman
   cssbundling-rails
-  debug
+  devise
+  enumerize
+  foreman
+  haml-rails
+  html2haml
   jsbundling-rails
+  log_bench
+  pg
   propshaft
+  pry-rails
   puma
   rails (~> 8.0.4)
-  thruster
+  sgcop!
+  simple_form
   turbo-rails
   web-console
 

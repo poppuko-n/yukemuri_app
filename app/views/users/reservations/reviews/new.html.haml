@@ -1,0 +1,7 @@
+.container.mt-4
+  .fs-2 レビュー投稿
+
+  = simple_form_for [:users, @reservation, @review] do |f|
+    = f.input :rating, required: true
+    = f.input :comment, required: true
+    = f.button :submit, class: 'btn btn-outline-primary'

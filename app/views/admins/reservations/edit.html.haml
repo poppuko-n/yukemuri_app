@@ -1,0 +1,40 @@
+.container.mt-4
+  .fs-2 予約詳細
+
+  .card.mt-4.mb-4
+    .card-body
+      %h5.card-title.mb-1= @reservation.room_type.accommodation.name
+
+      %h6.text-muted.mb-3= @reservation.room_type.name
+
+      %p
+        %strong= User.human_attribute_name(:email)
+        = @reservation.user.email
+
+      %p
+        %strong= Reservation.human_attribute_name(:check_in_date)
+        = l(@reservation.check_in_date)
+
+      %p
+        %strong チェックアウト日
+        = l(@reservation.check_in_date + @reservation.night_count.days)
+
+      %p
+        %strong= Reservation.human_attribute_name(:night_count)
+        = "#{@reservation.night_count}泊"
+
+      %p
+        %strong= Reservation.human_attribute_name(:adult_count)
+        = "#{@reservation.adult_count}名"
+
+      %p
+        %strong= Reservation.human_attribute_name(:child_count)
+        = "#{@reservation.child_count}名"
+
+      %p
+        %strong= Reservation.human_attribute_name(:tax_included_price)
+        = number_to_currency(@reservation.tax_included_price)
+
+      = simple_form_for [:admins, @reservation] do |f|
+        = f.input :status
+        = f.button :submit, data: { turbo_confirm: '本当にステータスを変更しますか?' }, class: 'btn btn-outline-danger w-100'

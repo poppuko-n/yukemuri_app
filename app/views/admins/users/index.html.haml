@@ -1,0 +1,17 @@
+.container.mt-4
+  .fs-2 ユーザー一覧
+
+  %table.table.table-striped.table-hover.mt-4
+    %thead
+      %tr
+        %th= User.human_attribute_name(:name)
+        %th= User.human_attribute_name(:email)
+        %th= User.human_attribute_name(:sign_in_count)
+        %th= User.human_attribute_name(:current_sign_in_at)
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= link_to user.name, admins_user_path(user)
+          %td= user.email
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at ? l(user.current_sign_in_at, format: :long) : '-'

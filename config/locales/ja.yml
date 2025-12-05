@@ -1,0 +1,340 @@
+---
+ja:
+  enumerize:
+    accommodation:
+      category:
+        guest_house: "民宿"
+        inn: "旅館"
+        hotel: "ホテル"
+    reservation:
+      status:
+        confirmed: "予約確定"
+        checked_out: "チェックアウト済み"
+        cancelled: "キャンセル"
+  controller:
+    created: 登録しました。
+    updated: 更新しました。
+    destroyed: 削除しました。
+    cannot_updated: 更新できませんでした。
+  reservations:
+    cancelled: "予約をキャンセルしました。"
+    cannot_cancel: "キャンセルできません。"
+  activerecord:
+    attributes:
+      accommodation:
+        name: "宿名"
+        prefecture: "都道府県"
+        address: "住所"
+        phone_number: "電話番号"
+        category: "宿タイプ"
+        description: "説明文"
+        published: "公開"
+        image: "画像"
+      room_type:
+        name: "部屋名"
+        capacity: "定員"
+        base_price: "基本料金（税抜き）"
+        tax_included_price: "基本料金(税込み)"
+        description: "備考（設備など）"
+        image: "画像"
+      room_inventory:
+        date: "日付"
+        remaining_room: "在庫数"
+        diff: "増減数"
+      reservation:
+        check_in_date: "宿泊日"
+        night_count: "泊数"
+        adult_count: "大人人数"
+        child_count: "子供人数"
+        total_price: "合計金額(税抜き)"
+        tax_price: "税額"
+        tax_included_price: "合計金額（税込み)"
+        status: "ステータス"
+      review:
+        rating: "評価"
+        comment: "コメント"
+      user:
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        name: "名前"
+        sign_in_count: "ログイン回数"
+        current_sign_in_at: "最終ログイン日時"
+        confirmed_at: "確認日時"
+        last_sign_in_at: "前回ログイン日時"
+        created_at: "作成日時"
+      admin:
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        name: "名前"
+        models:
+          user: "ユーザ"
+    errors:
+      messages:
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+  activemodel:
+    attributes:
+      accommodation_search_form:
+        category: "宿タイプ"
+        prefecture: "都道府県"
+  date:
+    abbr_day_names:
+      - 日
+      - 月
+      - 火
+      - 水
+      - 木
+      - 金
+      - 土
+    abbr_month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    day_names:
+      - 日曜日
+      - 月曜日
+      - 火曜日
+      - 水曜日
+      - 木曜日
+      - 金曜日
+      - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+      csv: "%Y%m%d"
+    month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
+    order:
+      - :year
+      - :month
+      - :day
+  datetime:
+    distance_in_words:
+      about_x_hours: 約%{count}時間
+      about_x_months: 約%{count}ヶ月
+      about_x_years: 約%{count}年
+      almost_x_years: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_seconds: "%{count}秒未満"
+      less_than_x_minutes: "%{count}分未満"
+      over_x_years: "%{count}年以上"
+      x_seconds: "%{count}秒"
+      x_minutes: "%{count}分"
+      x_days: "%{count}日"
+      x_months: "%{count}ヶ月"
+      x_years: "%{count}年"
+    prompts:
+      second: 秒
+      minute: 分
+      hour: 時
+      day: 日
+      month: 月
+      year: 年
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      in: は%{count}の範囲に含めてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+      validate_check_in_date_range: "は指定可能な期間内にしてください"
+      validate_room_inventory: "は在庫不足のため予約できません"
+      validate_total_guest_count: "の定員を超過しています"
+      validate_image_presence: "をアップしてください"
+      validate_update_diff: "を適用すると在庫がマイナスになります"
+    template:
+      body: 次の項目を確認してください
+      header: "%{model}に%{count}個のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      round_mode: default
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: "、"
+      two_words_connector: "、"
+      words_connector: "、"
+  time:
+    am: 午前
+    pm: 午後
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      sec: "%Y/%m/%d %H:%M:%S"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+      csv: "%Y%m%d%H%M"
+      date: "%Y/%m/%d"
+  simple_form:
+    error_notification:
+      default_message: "エラーがあります。確認してください。"
+  devise:
+    confirmations:
+      new:
+        resend_confirmation_instructions: "アカウント確認メール再送"
+    mailer:
+      confirmation_instructions:
+        action: "アカウント確認"
+        greeting: "ようこそ、%{recipient}さん!"
+        instruction: "次のリンクでメールアドレスの確認が完了します:"
+      reset_password_instructions:
+        action: "パスワード変更"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "誰かがパスワードの再設定を希望しました。次のリンクでパスワードの再設定が出来ます。"
+        instruction_2: "あなたが希望したのではないのなら、このメールは無視してください。"
+        instruction_3: "上のリンクにアクセスして新しいパスワードを設定するまで、パスワードは変更されません。"
+      unlock_instructions:
+        action: "アカウントのロック解除"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
+        message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
+    passwords:
+      edit:
+        change_my_password: "パスワードを変更する"
+        change_your_password: "パスワードを変更"
+        confirm_new_password: "確認用新しいパスワード"
+        new_password: "新しいパスワード"
+      new:
+        forgot_your_password: "パスワードを忘れましたか?"
+        send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      edit:
+        are_you_sure: "本当に良いですか?"
+        cancel_my_account: "アカウント削除"
+        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
+        "leave_blank_if_you_don't_want_to_change_it": "空欄のままなら変更しません"
+        title: "%{resource}編集"
+        unhappy: "気に入りません"
+        update: "更新"
+        we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
+      new:
+        sign_up: "アカウント登録"
+    sessions:
+      new:
+        sign_in: "ログイン"
+      user:
+        signed_out: "ログアウトしました"
+        signed_in: "ログインしました"
+      admin:
+        signed_out: "ログアウトしました"
+        signed_in: "ログインしました"
+    shared:
+      links:
+        back: "戻る"
+        forgot_your_password: "パスワードを忘れましたか?"
+        sign_in: "ログイン"
+        sign_in_with_provider: "%{provider}でログイン"
+        sign_up: "アカウント登録"
+    unlocks:
+      new:
+        resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+    failure:
+      invalid: "名前、メールアドレスまたはパスワードが正しくありません"
+      unauthenticated: "ログインしてください。"
+      already_authenticated: "すでにログインしています。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      admin:
+        unauthenticated: "管理者としてログインしてください。"
+        already_authenticated: "管理者としてすでにログインしています。"

@@ -1,0 +1,19 @@
+.container.mt-4
+  .fs-2 ユーザー情報
+
+  .card.mt-4
+    .card-body
+      %dl.row
+        %dt.col-3= User.human_attribute_name(:id)
+        %dd.col-9= @user.id
+        %dt.col-3= User.human_attribute_name(:name)
+        %dd.col-9= @user.name
+        %dt.col-3= User.human_attribute_name(:email)
+        %dd.col-9= @user.email
+        %dt.col-3= User.human_attribute_name(:sign_in_count)
+        %dd.col-9= @user.sign_in_count
+        %dt.col-3= User.human_attribute_name(:current_sign_in_at)
+        %dd.col-9= @user.current_sign_in_at ? l(@user.current_sign_in_at, format: :long) : '-'
+
+  .text-end.mt-5
+    = button_to t('削除'), admins_user_path(@user), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: 'btn btn-outline-danger'

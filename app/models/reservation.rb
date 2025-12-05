@@ -1,0 +1,147 @@
+class Reservation < ApplicationRecord
+  extend Enumerize
+
+  belongs_to :user
+  belongs_to :room_type
+  has_many :reviews, dependent: :destroy
+
+  RESERVATION_STATUSES = %w[confirmed checked_out cancelled].freeze
+  MIN_NIGHTS_COUNT = 1
+  MAX_NIGHTS_COUNT = 5
+  NIGHT_COUNT_RANGE = MIN_NIGHTS_COUNT..MAX_NIGHTS_COUNT
+  MIN_CHECK_IN_DAYS = 1
+  MAX_CHECK_IN_DAYS = 90
+
+  enumerize :status, in: RESERVATION_STATUSES, predicates: true
+
+  validates :check_in_date, presence: true
+  validates :night_count, presence: true, numericality: { only_integer: true, in: NIGHT_COUNT_RANGE }
+  validates :adult_count, numericality: { only_integer: true, greater_than: 0 }
+  validates :child_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  validate :validate_check_in_date_range
+  validate :validate_room_inventory
+  validate :validate_total_guest_count
+
+  scope :default_order, -> { order(check_in_date: :desc, id: :desc) }
+
+  def reserve
+    ActiveRecord::Base.transaction do
+      save!
+      use_room!
+      true
+    end
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
+
+  def cancel
+    return false unless cancellable?
+
+    ActiveRecord::Base.transaction do
+      update_column(:status, 'cancelled')
+      release_room!
+      true
+    end
+  end
+
+  def calculate_total_price
+    self.total_price = adult_amount + child_amount
+    self.tax_price = Tax.tax_price(total_price)
+    self.tax_included_price = Tax.tax_included_price(total_price)
+  end
+
+  def cancellable?
+    confirmed? && check_in_date > Date.current + 1.day
+  end
+
+  def reviewable?
+    reviews.blank? && checked_out?
+  end
+
+  def handle_status_change(new_status)
+    return true if status == new_status
+
+    case new_status
+    when 'confirmed'
+      self.status = 'confirmed'
+      reserve
+    when 'cancelled'
+      cancel
+    when 'checked_out'
+      check_out
+    end
+  end
+
+  private
+
+  def check_out
+    return false unless check_outable?
+
+    update_column(:status, 'checked_out')
+  end
+
+  def check_out_date
+    check_in_date + night_count.days
+  end
+
+  def check_outable?
+    confirmed? && Date.current >= check_out_date
+  end
+
+  def base_price_decimal
+    BigDecimal(room_type.base_price.to_s)
+  end
+
+  def adult_amount
+    base_price_decimal * BigDecimal(night_count.to_s) * BigDecimal(adult_count.to_s)
+  end
+
+  def child_amount
+    child_unit = PricingRule.child_price(base_price_decimal)
+    child_unit * BigDecimal(night_count.to_s) * BigDecimal(child_count.to_s)
+  end
+
+  def validate_check_in_date_range
+    range = (Date.current + MIN_CHECK_IN_DAYS.days)..(Date.current + MAX_CHECK_IN_DAYS.days)
+
+    errors.add(:check_in_date, :validate_check_in_date_range) unless range.include?(check_in_date)
+  end
+
+  def validate_room_inventory
+    return if check_in_date.blank? || night_count.blank?
+
+    errors.add(:night_count, :validate_room_inventory) unless room_type.available?(stay_date_range)
+  end
+
+  def validate_total_guest_count
+    return if adult_count.blank? || child_count.blank?
+
+    total_guests = adult_count + child_count
+    if total_guests > room_type.capacity
+      errors.add(:adult_count, :validate_total_guest_count)
+      errors.add(:child_count, :validate_total_guest_count)
+    end
+  end
+
+  def stay_date_range
+    (check_in_date...(check_in_date + night_count.days)).to_a
+  end
+
+  def use_room!
+    stay_date_range.each do |date|
+      inventory = room_type.room_inventories.lock.find_by!(date: date)
+
+      raise ActiveRecord::RecordInvalid if inventory.remaining_room <= 0
+
+      inventory.use_room!
+    end
+  end
+
+  def release_room!
+    stay_date_range.each do |date|
+      inventory = room_type.room_inventories.lock.find_by!(date: date)
+      inventory.release_room!
+    end
+  end
+end

@@ -1,0 +1,7 @@
+.container.mt-4
+  .fs-2 部屋在庫登録
+
+  = simple_form_for([:admins, @accommodation, @room_type, @room_inventory]) do |f|
+    = f.input :date, as: :date, html5: true
+    = f.input :remaining_room
+    = f.button :submit, class: 'btn-primary'
